@@ -1,4 +1,4 @@
 ## Node-GoBarber
 
-#Para executar
+Para executar:<br>
 yarn start

@@ -1,1 +1,4 @@
-# Node-GoBarber
+## Node-GoBarber
+
+#Para executar
+yarn start

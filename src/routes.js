@@ -9,6 +9,10 @@ const guestMiddleware = require('./app/middlewares/guest')
 
 const userController = require('./app/controllers/UserController')
 const sessionController = require('./app/controllers/SessionController')
+const DashboarController = require('./app/controllers/DashboardController')
+const FileController = require('./app/controllers/FileController')
+const AppointmentController = require('./app/controllers/AppointmentController')
+const AvailableControlers = require('./app/controllers/AvailableControllers')
 
 // middleware
 routes.use((req, res, next) => {
@@ -27,9 +31,13 @@ routes.post('/signin', sessionController.store)
 routes.get('/signup', guestMiddleware, userController.create)
 routes.post('/signup', upload.single('avatar'), userController.store)
 
-routes.get('/app/dashboard', (req, res) => {
-  console.log('session', req.session.user)
-  return res.render('dashboard')
-})
+routes.get('/app/dashboard', DashboarController.index)
+
+routes.get('/files/:file', FileController.sow)
+
+routes.get('/app/appointments/new/:provider', AppointmentController.create)
+routes.post('/app/appointments/new/:provider', AppointmentController.store)
+
+routes.get('/app/available/:provider', AvailableControlers.index)
 
 module.exports = routes
